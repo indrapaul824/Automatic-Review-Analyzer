@@ -6,9 +6,9 @@ import numpy as np
 # Data loading.
 # -------------------------------------------------------------------------------
 
-train_data = utils.load_data('reviews_train.tsv')
-val_data = utils.load_data('reviews_val.tsv')
-test_data = utils.load_data('reviews_test.tsv')
+train_data = utils.load_data('dataset/reviews_train.tsv')
+val_data = utils.load_data('dataset/reviews_val.tsv')
+test_data = utils.load_data('dataset/reviews_test.tsv')
 
 train_texts, train_labels = zip(*((sample['text'], sample['sentiment']) for sample in train_data))
 val_texts, val_labels = zip(*((sample['text'], sample['sentiment']) for sample in val_data))
@@ -24,7 +24,7 @@ test_bow_features = p1.extract_bow_feature_vectors(test_texts, dictionary)
 # Problem 5
 # -------------------------------------------------------------------------------
 
-toy_features, toy_labels = toy_data = utils.load_toy_data('toy_data.tsv')
+toy_features, toy_labels = toy_data = utils.load_toy_data('dataset/toy_data.tsv')
 
 T = 10
 L = 0.2
@@ -35,7 +35,7 @@ thetas_pegasos = p1.pegasos(toy_features, toy_labels, T, L)
 
 
 def plot_toy_results(algo_name, thetas):
-    print('theta for', algo_name, 'is', ', '.join(map(str,list(thetas[0]))))
+    print('theta for', algo_name, 'is', ', '.join(map(str, list(thetas[0]))))
     print('theta_0 for', algo_name, 'is', str(thetas[1]))
     utils.plot_toy_data(algo_name, toy_features, toy_labels, thetas)
 
@@ -52,17 +52,20 @@ T = 10
 L = 0.01
 
 pct_train_accuracy, pct_val_accuracy = \
-   p1.classifier_accuracy(p1.perceptron, train_bow_features,val_bow_features,train_labels,val_labels,T=T)
+   p1.classifier_accuracy(p1.perceptron, train_bow_features,
+                          val_bow_features, train_labels, val_labels, T=T)
 print("{:35} {:.4f}".format("Training accuracy for perceptron:", pct_train_accuracy))
 print("{:35} {:.4f}".format("Validation accuracy for perceptron:", pct_val_accuracy))
 
 avg_pct_train_accuracy, avg_pct_val_accuracy = \
-   p1.classifier_accuracy(p1.average_perceptron, train_bow_features,val_bow_features,train_labels,val_labels,T=T)
+   p1.classifier_accuracy(p1.average_perceptron, train_bow_features,
+                          val_bow_features, train_labels, val_labels, T=T)
 print("{:43} {:.4f}".format("Training accuracy for average perceptron:", avg_pct_train_accuracy))
 print("{:43} {:.4f}".format("Validation accuracy for average perceptron:", avg_pct_val_accuracy))
 
 avg_peg_train_accuracy, avg_peg_val_accuracy = \
-   p1.classifier_accuracy(p1.pegasos, train_bow_features,val_bow_features,train_labels,val_labels,T=T,L=L)
+   p1.classifier_accuracy(p1.pegasos, train_bow_features,
+                          val_bow_features, train_labels, val_labels, T=T, L=L)
 print("{:50} {:.4f}".format("Training accuracy for Pegasos:", avg_peg_train_accuracy))
 print("{:50} {:.4f}".format("Validation accuracy for Pegasos:", avg_peg_val_accuracy))
 
@@ -107,15 +110,21 @@ utils.plot_tune_results('Pegasos', 'L', Ls, *peg_tune_results_L)
 # test_bow_features and test_labels.
 # -------------------------------------------------------------------------------
 
-# Your code here
+T = 25
+L = 0.01
+avg_peg_train_accuracy, avg_peg_test_accuracy = p1.classifier_accuracy(p1.pegasos, train_bow_features,
+                                                                       test_bow_features, train_labels,
+                                                                       test_labels, T=T, L=L)
+print("{:50} {:.4f}".format("Best Training accuracy for Pegasos:", avg_peg_train_accuracy))
+print("{:50} {:.4f}".format("Best Testing accuracy for Pegasos:", avg_peg_test_accuracy))
 
-#-------------------------------------------------------------------------------
+# -------------------------------------------------------------------------------
 # Assign to best_theta, the weights (and not the bias!) learned by your most
-# accurate algorithm with the optimal choice of hyperparameters.
-#-------------------------------------------------------------------------------
+# accurate algorithm with the optimal choice of hyper-parameters.
+# -------------------------------------------------------------------------------
 
-# best_theta = None # Your code here
-# wordlist   = [word for (idx, word) in sorted(zip(dictionary.values(), dictionary.keys()))]
-# sorted_word_features = utils.most_explanatory_word(best_theta, wordlist)
-# print("Most Explanatory Word Features")
-# print(sorted_word_features[:10])
+best_theta = p1.pegasos(train_bow_features, train_labels, T, L)[0]
+wordlist = [word for (idx, word) in sorted(zip(dictionary.values(), dictionary.keys()))]
+sorted_word_features = utils.most_explanatory_word(best_theta, wordlist)
+print("Most Explanatory Word Features")
+print(sorted_word_features[:10])
