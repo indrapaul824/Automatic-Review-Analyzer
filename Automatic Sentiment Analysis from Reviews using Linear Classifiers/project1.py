@@ -2,7 +2,8 @@ from string import punctuation, digits
 import numpy as np
 import random
 
-# Part I
+
+# Building Linear Classifier Algorithms
 
 
 # pragma: coderesponse template
@@ -127,9 +128,6 @@ def average_perceptron(feature_matrix, labels, T):
     iterations through the feature matrix and the second element is a real
     number with the value of the average theta_0, the offset classification
     parameter, found after T iterations through the feature matrix.
-
-    Hint: It is difficult to keep a running average; however, it is simple to
-    find a sum and divide.
     """
     nsamples, nfeatures = feature_matrix.shape
     theta = np.zeros(nfeatures)
@@ -223,7 +221,8 @@ def pegasos(feature_matrix, labels, T, L):
     return theta, theta_0
 # pragma: coderesponse end
 
-# Part II
+
+# Building the Classifier and its metrics
 
 
 # pragma: coderesponse template
