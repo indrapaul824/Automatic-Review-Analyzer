@@ -3,7 +3,7 @@ import utils
 import numpy as np
 
 # -------------------------------------------------------------------------------
-# Data loading.
+# Data Loading and Preprocessing
 # -------------------------------------------------------------------------------
 
 train_data = utils.load_data('dataset/reviews_train.tsv')
@@ -21,7 +21,7 @@ val_bow_features = p1.extract_bow_feature_vectors(val_texts, dictionary)
 test_bow_features = p1.extract_bow_feature_vectors(test_texts, dictionary)
 
 # -------------------------------------------------------------------------------
-# Problem 5
+# Testing Algorithms on a toy data
 # -------------------------------------------------------------------------------
 
 toy_features, toy_labels = toy_data = utils.load_toy_data('dataset/toy_data.tsv')
@@ -45,7 +45,7 @@ plot_toy_results('Average Perceptron', thetas_avg_perceptron)
 plot_toy_results('Pegasos', thetas_pegasos)
 
 # -------------------------------------------------------------------------------
-# Problem 7
+# Classification using the 3 Algorithms on the actual dataset
 # -------------------------------------------------------------------------------
 
 T = 10
@@ -70,7 +70,7 @@ print("{:50} {:.4f}".format("Training accuracy for Pegasos:", avg_peg_train_accu
 print("{:50} {:.4f}".format("Validation accuracy for Pegasos:", avg_peg_val_accuracy))
 
 # -------------------------------------------------------------------------------
-# Problem 8
+# Hyper-parameter Tuning
 # -------------------------------------------------------------------------------
 
 data = (train_bow_features, train_labels, val_bow_features, val_labels)
@@ -104,10 +104,9 @@ utils.plot_tune_results('Pegasos', 'T', Ts, *peg_tune_results_T)
 utils.plot_tune_results('Pegasos', 'L', Ls, *peg_tune_results_L)
 
 # -------------------------------------------------------------------------------
-# Use the best method (perceptron, average perceptron or Pegasos) along with
-# the optimal hyper-parameters according to validation accuracies to test
-# against the test dataset. The test data has been provided as
-# test_bow_features and test_labels.
+# Using the best method (Pegasos) along with the optimal hyper-parameters according 
+# to validation accuracies to test against the test dataset. The test data has  
+# been provided as test_bow_features and test_labels.
 # -------------------------------------------------------------------------------
 
 T = 25
@@ -119,8 +118,8 @@ print("{:50} {:.4f}".format("Best Training accuracy for Pegasos:", avg_peg_train
 print("{:50} {:.4f}".format("Best Testing accuracy for Pegasos:", avg_peg_test_accuracy))
 
 # -------------------------------------------------------------------------------
-# Assign to best_theta, the weights (and not the bias!) learned by your most
-# accurate algorithm with the optimal choice of hyper-parameters.
+# Assigning to best_theta, the weights (and not the bias!) learned by the most
+# accurate algorithm (Pegasos) with the optimal choice of hyper-parameters.
 # -------------------------------------------------------------------------------
 
 best_theta = p1.pegasos(train_bow_features, train_labels, T, L)[0]
