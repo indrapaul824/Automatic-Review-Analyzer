@@ -1,4 +1,4 @@
-<h1 align="center">Automatic-Review-Analyzer</h1>
+<h1 align="center">Automatic Review Analyzer</h1>
 
 Implemented and compared three types of linear classifiers to use for **sentiment analysis** of Amazon product reviews.
 
