@@ -19,7 +19,7 @@ In order to automatically analyze reviews, I did the following tasks:
 
 -------
 
-**Setup Details:**
+## Setup Details:
 
 For this project, I used **Python 3.6** with some additional libraries. I strongly recommend that you take note of how the NumPy numerical library is used in the code provided, and read through the on-line NumPy tutorial. NumPy arrays are much more efficient than Python's native arrays when doing numerical computation. In addition, using NumPy will substantially reduce the lines of code you will need to write.
 
@@ -33,10 +33,10 @@ For this project, I used **Python 3.6** with some additional libraries. I strong
   * **test.py** is a script which runs tests on a few of the methods I implemented. Note that these tests are provided just to help debug the implementation. Feel free to add more test cases locally to further validate the correctness of the code.
   * **main.ipynb** is the same as *main.py* and is just for viewing the results of the classifiers.
   
-**How to Test Locally:** 
+## How to Test Locally:
 
 In your terminal, navigate to the directory where your project files reside. Execute the command `python test.py` to run all the available tests.
 
-**How to Run the Project 1 Functions Locally:** 
+## How to Run the Project 1 Functions Locally:
 
 In your terminal, enter `python main.py`.
