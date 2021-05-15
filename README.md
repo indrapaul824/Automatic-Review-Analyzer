@@ -13,8 +13,8 @@ Below are two example entries from the dataset. Each entry consists of the revie
  
 
 In order to automatically analyze reviews, I did the following tasks:
-* The three classifiers used: the **perceptron** algorithm, the **average perceptron** algorithm, and the **Pegasos** algorithm.
-* Use your classifiers on the **food review** dataset, using some simple text features.
+* Considered three classifiers: the **perceptron** algorithm, the **average perceptron** algorithm, and the **Pegasos** algorithm.
+* Use these classifiers on the **food review** dataset, using some simple text features.
 * Experiment with additional features and explore their impact on **classifier performance**.
 
 -------
