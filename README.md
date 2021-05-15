@@ -28,7 +28,7 @@ For this project, I used **Python 3.6** with some additional libraries. I strong
 2. Clone/download the repo and unzip into a working directory. The *Automatic Sentiment Analysis from Reviews using Linear Classifiers* folder contains the following:
   * *dataset* folder which contains various data files in .tsv format
   * **project1.py** contains various useful functions and function templates that I used to implement the learning algorithms.
-  * **main.py** is a script skeleton where these functions are called ran my experiments.
+  * **main.py** is a script skeleton where I called these functions and ran my experiments.
   * **utils.py** contains various utility functions used throughout the project
   * **test.py** is a script which runs tests on a few of the methods I implemented. Note that these tests are provided just to help debug the implementation. Feel free to add more test cases locally to further validate the correctness of the code.
   * **main.ipynb** is the same as *main.py* and is just for viewing the results of the classifiers.
